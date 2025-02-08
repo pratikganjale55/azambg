@@ -9,7 +9,10 @@ const taskRoutes = require("./routes/taskRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://whimsical-pastelito-f448c9.netlify.app',
+  optionsSuccessStatus: 200
+}));
 
 const mongoUrl = process.env.MONGODB_URL;
 mongoose.connect(mongoUrl, err => {
