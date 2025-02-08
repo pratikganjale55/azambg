@@ -9,7 +9,7 @@ const taskRoutes = require("./routes/taskRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 // CORS Configuration
 const corsOptions = {
-  origin: "https://azamfe.vercel.app", // Frontend URL
+  origin: "https://azamfe.vercel.app",  // ✅ Your frontend URL
   methods: "GET,POST,PUT,DELETE,PATCH,OPTIONS",
   allowedHeaders: "Content-Type,Authorization",
   credentials: true
@@ -17,14 +17,16 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// Handle Preflight Requests Properly
+// ✅ Handle preflight (OPTIONS) request properly
 app.options("*", (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://azamfe.vercel.app");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.status(200).end(); // Ensure it returns a 200 OK
+  res.set({
+    "Access-Control-Allow-Origin": "https://azamfe.vercel.app",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    "Access-Control-Allow-Credentials": "true"
+  });
+  res.status(200).end(); // ✅ Must return HTTP 200 OK
 });
-
 app.use(express.json());
 // const allowedOrigins = [
 //   "http://localhost:3000",      
