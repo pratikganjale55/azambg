@@ -7,6 +7,7 @@ require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
 const taskRoutes = require("./routes/taskRoutes");
 const profileRoutes = require("./routes/profileRoutes");
+app.options("*", cors());
 
 app.use(express.json());
 // const allowedOrigins = [
@@ -25,7 +26,7 @@ app.use(express.json());
 //   methods: "GET,POST,PUT,DELETE",
 //   allowedHeaders: "Content-Type,Authorization"
 // }));
-app.use(cors())
+
 
 
 const mongoUrl = process.env.MONGODB_URL;
