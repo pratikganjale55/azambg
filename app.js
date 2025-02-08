@@ -10,9 +10,12 @@ const profileRoutes = require("./routes/profileRoutes");
 
 app.use(express.json());
 app.use(cors({
-  origin: 'https://whimsical-pastelito-f448c9.netlify.app',
-  optionsSuccessStatus: 200
+  origin: 'https://azamfe.vercel.app',  // Replace with your frontend domain
+  methods: 'GET,POST,PUT,DELETE',
+  allowedHeaders: 'Content-Type,Authorization'
 }));
+
+app.options('*', cors());
 
 const mongoUrl = process.env.MONGODB_URL;
 mongoose.connect(mongoUrl, err => {
