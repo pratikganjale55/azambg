@@ -9,24 +9,23 @@ const taskRoutes = require("./routes/taskRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 
 app.use(express.json());
-const allowedOrigins = [
-  "http://localhost:3000",      
-  "https://azamfe.vercel.app",  
-];
+// const allowedOrigins = [
+//   "http://localhost:3000",      
+//   "https://azamfe.vercel.app",  
+// ];
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  methods: "GET,POST,PUT,DELETE",
-  allowedHeaders: "Content-Type,Authorization"
-}));
-
-app.options("*", cors()); 
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   methods: "GET,POST,PUT,DELETE",
+//   allowedHeaders: "Content-Type,Authorization"
+// }));
+app.use(cors())
 
 
 const mongoUrl = process.env.MONGODB_URL;
@@ -46,5 +45,5 @@ if (process.env.NODE_ENV === "production") {
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
-  console.log(`Backend is running on port ${port}`);
+  console.log(`Backend is running on port1 ${port}`);
 });
