@@ -7,7 +7,23 @@ require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
 const taskRoutes = require("./routes/taskRoutes");
 const profileRoutes = require("./routes/profileRoutes");
-app.options("*", cors());
+// CORS Configuration
+const corsOptions = {
+  origin: "https://azamfe.vercel.app", // Frontend URL
+  methods: "GET,POST,PUT,DELETE,PATCH,OPTIONS",
+  allowedHeaders: "Content-Type,Authorization",
+  credentials: true
+};
+
+app.use(cors(corsOptions));
+
+// Handle Preflight Requests Properly
+app.options("*", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://azamfe.vercel.app");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.status(200).end(); // Ensure it returns a 200 OK
+});
 
 app.use(express.json());
 // const allowedOrigins = [
